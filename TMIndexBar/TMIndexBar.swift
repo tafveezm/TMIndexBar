@@ -48,7 +48,7 @@ protocol TMIndexBarDelegate: class {
     func indexBarDidSelect(index: Int)
 }
 
-class BarAppearanceBuilder {
+public class BarAppearanceBuilder {
     
     static let kTMDefaultBarBackgroundWidth: CGFloat = 15.0
     static let kTMDefaultFontName = "HelveticaNeue-Bold"
@@ -114,7 +114,7 @@ class BarAppearanceBuilder {
     }
 }
 
-class TMIndexBar: UIControl {
+public class TMIndexBar: UIControl {
     
     static let kShowDebugOutlines = false
     static let kObservingContext = "TMIndexBarContext"
@@ -163,12 +163,12 @@ class TMIndexBar: UIControl {
         initializeIndexBar()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
  
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         initializeIndexBar()
     }
@@ -264,7 +264,7 @@ extension TMIndexBar {
         }
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         let newFrame = rectForIndexBarFrame()
@@ -342,7 +342,7 @@ extension TMIndexBar {
 // MARK: - Drawing.
 extension TMIndexBar {
     
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         super.draw(rect)
         
         updateDisplaedIndexStrings()
@@ -391,7 +391,7 @@ extension TMIndexBar {
 // MARK: - Touch handling
 extension TMIndexBar {
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = Array(touches).last else { return }
         if rectForTextArea().contains(touch.location(in: self)) {
             currentTouch = touch
@@ -400,7 +400,7 @@ extension TMIndexBar {
         }
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let currentTouch = currentTouch, touches.contains(currentTouch) else { return }
         
         isHighlighted = rectForTextArea().contains(currentTouch.location(in: self))
@@ -408,7 +408,7 @@ extension TMIndexBar {
         
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let currentTouch = self.currentTouch, touches.contains(currentTouch) {
             isHighlighted = false
             self.currentTouch = nil
@@ -417,7 +417,7 @@ extension TMIndexBar {
         lastSelectedStringIndex = nil
     }
     
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         if touches.contains(currentTouch!) {
             isHighlighted = false
             currentTouch = nil
