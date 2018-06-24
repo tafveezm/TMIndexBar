@@ -30,19 +30,19 @@
 
 import UIKit
 
-enum TMIndexBarAlignment {
+public enum TMIndexBarAlignment {
     case center
     case top
     case bottom
 }
 
 
-enum TMIndexBarPosition {
+public enum TMIndexBarPosition {
     case right
     case left
 }
 
-protocol TMIndexBarDelegate: class {
+public protocol TMIndexBarDelegate: class {
     func numberOfIndexes(for indexBar: TMIndexBar) -> Int
     func fetchString(for index: Int) -> String
     func indexBarDidSelect(index: Int)
@@ -50,13 +50,13 @@ protocol TMIndexBarDelegate: class {
 
 public class BarAppearanceBuilder {
     
-    static let kTMDefaultBarBackgroundWidth: CGFloat = 15.0
-    static let kTMDefaultFontName = "HelveticaNeue-Bold"
-    static let kTMDefaultFontSize: CGFloat = 13.0
-    static let kTMDefaultTextSpacing: CGFloat = 5
-    static let kTMDefaultTruncatedItemText = "•"
-    static let kTMDefaultBarWidth: CGFloat = 30
-    static let kTMDefaultOffset = UIOffset(horizontal: (kTMDefaultBarWidth - kTMDefaultBarBackgroundWidth)/2 , vertical: 0)
+    public static let kTMDefaultBarBackgroundWidth: CGFloat = 15.0
+    public static let kTMDefaultFontName = "HelveticaNeue-Bold"
+    public static let kTMDefaultFontSize: CGFloat = 13.0
+    public static let kTMDefaultTextSpacing: CGFloat = 5
+    public static let kTMDefaultTruncatedItemText = "•"
+    public static let kTMDefaultBarWidth: CGFloat = 30
+    public static let kTMDefaultOffset = UIOffset(horizontal: (kTMDefaultBarWidth - kTMDefaultBarBackgroundWidth)/2 , vertical: 0)
     
     var truncatedItemText: String
     var indexBarVerticalAlignment: TMIndexBarAlignment
@@ -76,7 +76,7 @@ public class BarAppearanceBuilder {
     var backgroundViewCornerRadius: CGFloat
     var indexBarPosition: TMIndexBarPosition
     
-    init(truncatedItemText: String = kTMDefaultTruncatedItemText,
+    public init( truncatedItemText: String = kTMDefaultTruncatedItemText,
          indexBarVerticalAlignment: TMIndexBarAlignment = .center,
          alwaysShowBarBackground: Bool = true,
          barWidth: CGFloat = kTMDefaultBarWidth,
@@ -155,7 +155,7 @@ public class TMIndexBar: UIControl {
         return numberOfIndices!
     }
     
-    init(with tableView: UITableView, barAppearanceBuilder: BarAppearanceBuilder = BarAppearanceBuilder()) {
+    public init(with tableView: UITableView, barAppearanceBuilder: BarAppearanceBuilder = BarAppearanceBuilder()) {
         self.tableView = tableView
         self.barAppearanceBuilder = barAppearanceBuilder
         super.init(frame: CGRect.zero)
